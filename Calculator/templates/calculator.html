@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="calculator">
+        <form action="/calculate" method="POST">
+            <input type="text" name="expression" id="expression" placeholder="0" readonly>
+            <div class="buttons">
+                <button type="button" onclick="appendToExpression('1')">1</button>
+                <button type="button" onclick="appendToExpression('2')">2</button>
+                <button type="button" onclick="appendToExpression('3')">3</button>
+                <button type="button" onclick="appendToExpression('+')">+</button>
+                <button type="button" onclick="appendToExpression('4')">4</button>
+                <button type="button" onclick="appendToExpression('5')">5</button>
+                <button type="button" onclick="appendToExpression('6')">6</button>
+                <button type="button" onclick="appendToExpression('-')">-</button>
+                <button type="button" onclick="appendToExpression('7')">7</button>
+                <button type="button" onclick="appendToExpression('8')">8</button>
+                <button type="button" onclick="appendToExpression('9')">9</button>
+                <button type="button" onclick="appendToExpression('*')">*</button>
+                <button type="button" onclick="appendToExpression('.')">.</button>
+                <button type="button" onclick="appendToExpression('0')">0</button>
+                <button type="button" onclick="clearExpression()">C</button>
+                <button type="submit" id="calculate">=</button>
+                <button type="button" onclick="appendToExpression('/')">/</button>
+            </div>
+        </form>
+        {% if error %}
+        <p class="error">{{ error }}</p>
+        {% endif %}
+        {% if result is defined %}
+        <h2>Result: {{ result }}</h2>
+        {% endif %}
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
